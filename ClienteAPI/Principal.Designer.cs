@@ -31,6 +31,7 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_agregar_tarea = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblUsername.Location = new System.Drawing.Point(389, 5);
+            this.lblUsername.Location = new System.Drawing.Point(447, 5);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(86, 31);
@@ -49,7 +50,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 40);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 70);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 33;
@@ -61,18 +62,29 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(197, -1);
+            this.label1.Location = new System.Drawing.Point(255, -1);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(188, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Bienvenido";
             // 
+            // button_agregar_tarea
+            // 
+            this.button_agregar_tarea.Location = new System.Drawing.Point(710, 42);
+            this.button_agregar_tarea.Name = "button_agregar_tarea";
+            this.button_agregar_tarea.Size = new System.Drawing.Size(136, 23);
+            this.button_agregar_tarea.TabIndex = 6;
+            this.button_agregar_tarea.Text = "Agregar nueva tarea";
+            this.button_agregar_tarea.UseVisualStyleBackColor = true;
+            this.button_agregar_tarea.Click += new System.EventHandler(this.button_agregar_tarea_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 661);
+            this.Controls.Add(this.button_agregar_tarea);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblUsername);
@@ -91,5 +103,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_agregar_tarea;
     }
 }

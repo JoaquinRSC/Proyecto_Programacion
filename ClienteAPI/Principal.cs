@@ -217,6 +217,91 @@ namespace ClienteAPI
             return response;
         }
 
-       
+        private void button_agregar_tarea_Click(object sender, EventArgs e)
+        {
+            MostrarFormularioAgregar();
+        }
+
+        private void MostrarFormularioAgregar()
+        {
+            Form formAgregarTarea = new Form();
+            TextBox txtTitle = new TextBox();
+            TextBox txtAuthorName = new TextBox();
+            TextBox txtBody = new TextBox();
+            TextBox txtCreationDate = new TextBox();
+            TextBox txtExpirationDate = new TextBox();
+            Button btnAgregar = new Button();
+
+            formAgregarTarea.Text = "Agregar Nueva Tarea";
+            formAgregarTarea.Size = new System.Drawing.Size(300, 250);
+
+            txtTitle.Text = "Título";
+            txtAuthorName.Text = "Nombre del Autor";
+            txtBody.Text = "Cuerpo";
+            txtCreationDate.Text = "Fecha de Creación";
+            txtExpirationDate.Text = "Fecha de Vencimiento";
+
+            int textBoxWidth = 200;
+            int textBoxHeight = 20;
+            int textBoxSpacing = 30;
+
+            txtTitle.Location = new System.Drawing.Point(50, 20);
+            txtTitle.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
+
+            txtAuthorName.Location = new System.Drawing.Point(50, 20 + textBoxSpacing);
+            txtAuthorName.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
+
+            txtBody.Location = new System.Drawing.Point(50, 20 + 2 * textBoxSpacing);
+            txtBody.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
+
+            txtCreationDate.Location = new System.Drawing.Point(50, 20 + 3 * textBoxSpacing);
+            txtCreationDate.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
+
+            txtExpirationDate.Location = new System.Drawing.Point(50, 20 + 4 * textBoxSpacing);
+            txtExpirationDate.Size = new System.Drawing.Size(textBoxWidth, textBoxHeight);
+
+            btnAgregar.Text = "Agregar";
+            btnAgregar.Size = new System.Drawing.Size(80, 30);
+            btnAgregar.Location = new System.Drawing.Point(100, 20 + 5 * textBoxSpacing); ;
+
+            formAgregarTarea.Controls.Add(txtTitle);
+            formAgregarTarea.Controls.Add(txtAuthorName);
+            formAgregarTarea.Controls.Add(txtBody);
+            formAgregarTarea.Controls.Add(txtCreationDate);
+            formAgregarTarea.Controls.Add(txtExpirationDate);
+            formAgregarTarea.Controls.Add(btnAgregar);
+
+            btnAgregar.Click += async (sender, e) =>
+            {
+                if (string.IsNullOrEmpty(txtTitle.Text) || string.IsNullOrEmpty(txtAuthorName.Text) || string.IsNullOrEmpty(txtBody.Text) || string.IsNullOrEmpty(txtCreationDate.Text))
+                {
+                    MessageBox.Show("Todos los campos son obligatorios, excepto Expiration Date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var nuevaTarea = new
+                {
+                    title = txtTitle.Text,
+                    authorName = txtAuthorName.Text,
+                    body = txtBody.Text,
+                    creationDate = txtCreationDate.Text,
+                    expirationDate = txtExpirationDate.Text
+                };
+
+                RestClient client = new RestClient("http://localhost:49923");
+                RestRequest request = new RestRequest($"/api/task", Method.Post);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(nuevaTarea);
+
+                formAgregarTarea.Close();
+
+                RestResponse response = await client.ExecuteAsync(request);
+                MessageBox.Show("Nueva tarea agregada correctamente");
+            };
+
+            // Mostrar el formulario
+            formAgregarTarea.ShowDialog();
+        }
+
     }
 }

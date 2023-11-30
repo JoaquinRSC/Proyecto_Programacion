@@ -10,47 +10,25 @@ namespace CapaLogica
     {
         public static void Crear(TaskEntity taskToSave)
         {
-
-            DateTime creationDate = DateTime.ParseExact(taskToSave.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string expirationDateMysqlFormat = DateTime.Now.ToString();
-            if (!string.IsNullOrEmpty(taskToSave.expirationDate))
-            {
-                DateTime expirationDate = DateTime.ParseExact(taskToSave.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-
             TaskModel task = new TaskModel();
             task.title = taskToSave.title;
             task.authorName = taskToSave.authorName;
             task.body = taskToSave.body;
-            task.creationDate = creationDateMysqlFormat;
-            task.expirationDate = expirationDateMysqlFormat;
+            task.creationDate = taskToSave.creationDate;
+            task.expirationDate = taskToSave.expirationDate;
 
             task.Save();
         }
 
         public static void Editar(TaskEntity taskToEdit)
         {
-            DateTime creationDate = DateTime.ParseExact(taskToEdit.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string expirationDateMysqlFormat = DateTime.Now.ToString();
-            if (!string.IsNullOrEmpty(taskToEdit.expirationDate))
-            {
-                DateTime expirationDate = DateTime.ParseExact(taskToEdit.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-         
-
             TaskModel task = new TaskModel();
             task.id = taskToEdit.id;
             task.title = taskToEdit.title;
             task.authorName = taskToEdit.authorName;
             task.body = taskToEdit.body;
-            task.creationDate = creationDateMysqlFormat;
-            task.expirationDate = expirationDateMysqlFormat;
+            task.creationDate = taskToEdit.creationDate;
+            task.expirationDate = taskToEdit.expirationDate;
 
             task.Edit();
         }
