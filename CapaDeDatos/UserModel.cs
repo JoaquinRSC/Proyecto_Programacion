@@ -20,7 +20,7 @@ namespace CapaDeDatos
         public void Save()
         {
             this.Command.CommandText =
-                $"INSERT INTO User(username,password) " +
+                $"INSERT INTO user(username,password) " +
                 $"VALUES ('{this.Username}','{Hash.Content(this.Password)}')";
 
             this.Command.ExecuteNonQuery();
@@ -32,7 +32,7 @@ namespace CapaDeDatos
             Dictionary<string, string> resultado = new Dictionary<string, string>();
 
             this.Command.CommandText = $"SELECT id, username, password " +
-                $"From User where username = '{this.Username}'";
+                $"From user where username = '{this.Username}'";
             this.Reader = this.Command.ExecuteReader();
 
             if (this.Reader.HasRows)
@@ -51,7 +51,7 @@ namespace CapaDeDatos
 
         public List<UserModel> Todos()
         {
-            this.Command.CommandText = "SELECT * FROM User";
+            this.Command.CommandText = "SELECT * FROM user";
             this.Reader = this.Command.ExecuteReader();
 
             List<UserModel> resultado = new List<UserModel>();
