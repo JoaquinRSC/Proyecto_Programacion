@@ -169,6 +169,8 @@ namespace ClienteAPI
 
                 RestResponse response = await client.ExecuteAsync(request);
                 MessageBox.Show("Tarea editada correctamente");
+                DataTable tablaActualizada = obtenerDataTable();
+                dataGridView1.DataSource = tablaActualizada;
             };
 
             // Mostrar el formulario
@@ -296,7 +298,11 @@ namespace ClienteAPI
                 formAgregarTarea.Close();
 
                 RestResponse response = await client.ExecuteAsync(request);
+
                 MessageBox.Show("Nueva tarea agregada correctamente");
+
+                DataTable tablaActualizada = obtenerDataTable();
+                dataGridView1.DataSource = tablaActualizada;
             };
 
             // Mostrar el formulario
