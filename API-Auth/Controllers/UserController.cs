@@ -20,12 +20,12 @@ namespace API_Auth.Controllers
         public void Post([FromBody]string value)
         {
             CapaLogica.UserController.Crear("joaquin_r", "12345");
-            
         }
 
         [Route("api/login")]
         public IHttpActionResult Auth([FromBody]UserModel user)
         {
+            CapaLogica.UserController.Crear("joaquin_r", "12345");
             Dictionary<string,string> autenticacion = CapaLogica.UserController.Login(user.Username,user.Password);
             if (autenticacion["resultado"] == "OK")
                 return Ok(autenticacion);

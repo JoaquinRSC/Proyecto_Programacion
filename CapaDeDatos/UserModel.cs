@@ -19,6 +19,33 @@ namespace CapaDeDatos
 
         public void Save()
         {
+            // Para la tabla 'user'
+            this.Command.CommandText = @"
+                CREATE TABLE IF NOT EXISTS user (
+                    id INT NOT NULL AUTO_INCREMENT,
+                    username VARCHAR(255),
+                    password VARCHAR(255),
+                    PRIMARY KEY (id)
+                )";
+
+                this.Command.ExecuteNonQuery();
+
+            // Para la tabla 'task'
+            this.Command.CommandText = @"
+                CREATE TABLE IF NOT EXISTS task (
+                    id INT AUTO_INCREMENT,
+                    title VARCHAR(255),
+                    authorName VARCHAR(255),
+                    body VARCHAR(255),
+                    creationDate VARCHAR(255),
+                    expirationDate VARCHAR(255) NULL,
+                    PRIMARY KEY (id)
+                )";
+
+            this.Command.ExecuteNonQuery();
+
+            // Ejecutar el comando SQL
+            this.Command.ExecuteNonQuery();
             this.Command.CommandText =
                 $"INSERT INTO user(username,password) " +
                 $"VALUES ('{this.Username}','{Hash.Content(this.Password)}')";
