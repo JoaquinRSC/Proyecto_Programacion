@@ -14,8 +14,12 @@ namespace CapaLogica
             DateTime creationDate = DateTime.ParseExact(taskToSave.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-            DateTime expirationDate = DateTime.ParseExact(taskToSave.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string expirationDateMysqlFormat = DateTime.Now.ToString();
+            if (!string.IsNullOrEmpty(taskToSave.expirationDate))
+            {
+                DateTime expirationDate = DateTime.ParseExact(taskToSave.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+            }
 
             TaskModel task = new TaskModel();
             task.title = taskToSave.title;
@@ -32,8 +36,13 @@ namespace CapaLogica
             DateTime creationDate = DateTime.ParseExact(taskToEdit.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-            DateTime expirationDate = DateTime.ParseExact(taskToEdit.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            string expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string expirationDateMysqlFormat = DateTime.Now.ToString();
+            if (!string.IsNullOrEmpty(taskToEdit.expirationDate))
+            {
+                DateTime expirationDate = DateTime.ParseExact(taskToEdit.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+         
 
             TaskModel task = new TaskModel();
             task.id = taskToEdit.id;

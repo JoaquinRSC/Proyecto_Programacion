@@ -18,7 +18,7 @@ namespace API_Auth.Controllers
         }
 
         [Route("api/task")]
-        public void Patch([FromBody] TaskEntity task)
+        public void Put([FromBody] TaskEntity task)
         {
             CapaLogica.TaskController.Editar(task);
         }

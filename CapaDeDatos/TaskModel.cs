@@ -26,8 +26,8 @@ namespace CapaDeDatos
 
             this.Command.CommandText =
                 $"UPDATE task " +
-                $"SET username = '{this.title}', " +
-                $"    password = '{this.authorName}', " +
+                $"SET title = '{this.title}', " +
+                $"    authorName = '{this.authorName}', " +
                 $"    body = '{this.body}', " +
                 $"    creationDate = '{this.creationDate}', " +
                 $"    expirationDate = '{this.expirationDate}' " +
