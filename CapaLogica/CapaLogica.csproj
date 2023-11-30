@@ -54,6 +54,10 @@
       <Project>{8b1a5470-580d-455a-981c-566aa7b366a5}</Project>
       <Name>CapaDeDatos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{df02ad2b-e70d-40f0-875b-7e6c7113953a}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.ico" />

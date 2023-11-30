@@ -257,6 +257,10 @@
       <Project>{2440422c-cfbe-4923-b8b2-3407745dde33}</Project>
       <Name>CapaLogica</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{df02ad2b-e70d-40f0-875b-7e6c7113953a}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

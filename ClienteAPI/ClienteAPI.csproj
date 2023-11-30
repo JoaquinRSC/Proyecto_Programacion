@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonResponses\ResultadoLogin.cs" />
+    <Compile Include="JsonResponses\Task.cs" />
     <Compile Include="JsonResponses\User.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>

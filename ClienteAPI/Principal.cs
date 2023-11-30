@@ -19,9 +19,9 @@ namespace ClienteAPI
             lblUsername.Text = data.Username;
         }
 
-        private List<JsonResponses.User> deserializar(string content)
+        private List<JsonResponses.Task> deserializar(string content)
         {
-            return JsonConvert.DeserializeObject<List<JsonResponses.User>>(content);
+            return JsonConvert.DeserializeObject<List<JsonResponses.Task>>(content);
         }
 
 
@@ -38,32 +38,40 @@ namespace ClienteAPI
 
         private DataTable obtenerDataTable()
         {
-            RestResponse response = pedirListaDeUsuariosEnAPI();
+            RestResponse response = pedirListaDAutoresEnAPI();
 
             DataTable tabla = new DataTable();
-            tabla.Columns.Add("Id", typeof(int));
-            tabla.Columns.Add("Username", typeof(string));
+            tabla.Columns.Add("id", typeof(int));
+            tabla.Columns.Add("title", typeof(string));
+            tabla.Columns.Add("authorName", typeof(string));
+            tabla.Columns.Add("body", typeof(string));
+            tabla.Columns.Add("creationDate", typeof(string));
+            tabla.Columns.Add("expirationDate", typeof(string));
 
-            foreach (JsonResponses.User user in deserializar(response.Content))
+            foreach (JsonResponses.Task task in deserializar(response.Content))
             {
-                llenarDataTable(tabla, user);
+                llenarDataTable(tabla, task);
             }
 
             return tabla;
         }
 
-        private static void llenarDataTable(DataTable tabla, JsonResponses.User user)
+        private static void llenarDataTable(DataTable tabla, JsonResponses.Task task)
         {
             DataRow fila = tabla.NewRow();
-            fila["Id"] = user.Id;
-            fila["Username"] = user.Username;
+            fila["id"] = task.id;
+            fila["title"] = task.title;
+            fila["authorName"] = task.authorName;
+            fila["body"] = task.body;
+            fila["creationDate"] = task.creationDate;
+            fila["expirationDate"] = task.expirationDate;
             tabla.Rows.Add(fila);
         }
 
-        private static RestResponse pedirListaDeUsuariosEnAPI()
+        private static RestResponse pedirListaDAutoresEnAPI()
         {
             RestClient client = new RestClient("http://localhost:49923");
-            RestRequest request = new RestRequest("/api/user", Method.Get);
+            RestRequest request = new RestRequest("/api/task", Method.Get);
             request.AddHeader("Accept", "application/json");
             RestResponse response = client.Execute(request);
             return response;

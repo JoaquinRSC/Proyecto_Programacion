@@ -1,29 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySqlConnector;
-using MD5Hash;
-
 
 namespace CapaDeDatos
 {
     public class TaskModel : Model
     {
+        public int id;
         public string title;
         public string authorName;
         public string body;
         public string creationDate;
         public string expirationDate;
 
-        public int id;
-
         public void Save()
         {
             this.Command.CommandText =
-                $"INSERT INTO task(username,password) " +
-                $"VALUES ('{this.title}','{this.authorName}','{this.body}','{this.creationDate}','{this.expirationDate}')";
+             $"INSERT INTO task (title, authorName, body, creationDate, expirationDate) " +
+             $"VALUES ('{this.title}', '{this.authorName}', '{this.body}', '{this.creationDate}', '{this.expirationDate}')";
 
             this.Command.ExecuteNonQuery();
         }

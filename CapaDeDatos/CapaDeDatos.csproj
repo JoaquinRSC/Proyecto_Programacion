@@ -79,5 +79,11 @@
   <ItemGroup>
     <Content Include="logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{df02ad2b-e70d-40f0-875b-7e6c7113953a}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

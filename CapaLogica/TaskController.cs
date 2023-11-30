@@ -1,37 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CapaDeDatos;
-using System.Data;
-
+using Entities;
+using System.Globalization;
 
 namespace CapaLogica
 {
     public static class TaskController
     {
-        public static void Crear(string title, string authorName, string body, string creationDate, string expirationDate)
+        public static void Crear(TaskEntity taskToSave)
         {
-            TaskModel task = new TaskModel();
-            task.title = title;
-            task.authorName = authorName;
-            task.body = body;
-            task.creationDate = creationDate;
-            task.expirationDate = expirationDate;
 
-           task.Save();
+            DateTime creationDate = DateTime.ParseExact(taskToSave.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DateTime expirationDate = DateTime.ParseExact(taskToSave.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            TaskModel task = new TaskModel();
+            task.title = taskToSave.title;
+            task.authorName = taskToSave.authorName;
+            task.body = taskToSave.body;
+            task.creationDate = creationDateMysqlFormat;
+            task.expirationDate = expirationDateMysqlFormat;
+
+            task.Save();
         }
 
-        public static void Editar(int id, string title, string authorName, string body, string creationDate, string expirationDate)
+        public static void Editar(TaskEntity taskToEdit)
         {
+            DateTime creationDate = DateTime.ParseExact(taskToEdit.creationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string creationDateMysqlFormat = creationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DateTime expirationDate = DateTime.ParseExact(taskToEdit.expirationDate, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string expirationDateMysqlFormat = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
             TaskModel task = new TaskModel();
-            task.id = id;
-            task.title = title;
-            task.authorName = authorName;
-            task.body = body;
-            task.creationDate = creationDate;
-            task.expirationDate = expirationDate;
+            task.id = taskToEdit.id;
+            task.title = taskToEdit.title;
+            task.authorName = taskToEdit.authorName;
+            task.body = taskToEdit.body;
+            task.creationDate = creationDateMysqlFormat;
+            task.expirationDate = expirationDateMysqlFormat;
 
             task.Edit();
         }

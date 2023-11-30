@@ -5,21 +5,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using API_Auth.Models;
+using Entities;
 
 namespace API_Auth.Controllers
 {
     public class TaskController : ApiController
     {
         [Route("api/task")]
-        public void Post([FromBody] string title, string authorName, string body, string creationDate, string expirationDate)
+        public void Post([FromBody] TaskEntity task)
         {
-           CapaLogica.TaskController.Crear(title, authorName, body, creationDate, expirationDate);
+           CapaLogica.TaskController.Crear(task);
         }
 
         [Route("api/task")]
-        public void Patch([FromBody] int id, string title, string authorName, string body, string creationDate, string expirationDate)
+        public void Patch([FromBody] TaskEntity task)
         {
-            CapaLogica.TaskController.Editar(id, title, authorName, body, creationDate, expirationDate);
+            CapaLogica.TaskController.Editar(task);
         }
 
         [Route("api/task")]
@@ -34,8 +35,6 @@ namespace API_Auth.Controllers
             return Ok(CapaLogica.TaskController.ObtenerUno(id));
 
         }
-
-       
 
         [Route("api/task/{id:int}")]
         public void Delete(int id)

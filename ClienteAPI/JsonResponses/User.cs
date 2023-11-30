@@ -10,6 +10,5 @@ namespace ClienteAPI.JsonResponses
     {
         public int Id;
         public string Username;
-        public string Tipo;
     }
 }
